@@ -45,3 +45,22 @@ router.get('api/workouts/range', (req, res) => {
             res.status(400).json(error);
         });
 });
+
+router.get('/api/workouts', (req, res) => {
+    Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: {
+                    $sum: '$exercise.duration'
+                }
+            }
+        }
+    ])
+        .then((workoutDB) => {
+            res.json(workoutDB)
+        })
+        .catch(error => {
+            res.status(400).json(error);
+        });
+});
+module.exports = router;
