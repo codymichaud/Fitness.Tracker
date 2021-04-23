@@ -30,10 +30,16 @@ const workoutSchema = new Schema({
             required: 'Enter desired number of sets'
         },
         duration: {
-            typer: Number,
+            type: Number,
             required: 'Enter desired length of workout in minutes'
         },
-
-
+        distance: {
+            type: Number,
+            required: 'Enter desired cardio distance'
+        },
     }]
-})
+});
+
+const Workout = mongoose.model('Workout', workoutSchema);
+
+module.exports = Workout;
