@@ -37,7 +37,8 @@ const workoutSchema = new Schema({
             type: Number,
             required: 'Enter desired cardio distance'
         },
-    }]
+    },
+    ],
 });
 
 const Workout = mongoose.model('Workout', workoutSchema);

@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const htmlRoute = require('./routes/htmlRoute');
 const apiRoute = require('./routes/apiRoute');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 const app = express();
 

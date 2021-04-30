@@ -1,18 +1,18 @@
 const router = require('express').Router();
 const Workout = require('../models/workout');
 
-router.post('api/workouts', ({ body }, res) => {
+router.post('/api/workouts', ({ body }, res) => {
     Workout.create({})
         .then((workoutDB) => {
             res.json(workoutDB)
         })
-        .catch(error => {
+        .catch((error) => {
             res.status(400).json(error);
         });
 });
 
 
-router.put('api/workouts/:id', ({ body, params }, res) => {
+router.put('/api/workouts/:id', ({ body, params }, res) => {
     Workout.findByIdAndUpdate(
         params.id,
         { $push: { exercises: body } },
@@ -21,12 +21,12 @@ router.put('api/workouts/:id', ({ body, params }, res) => {
         .then((workoutDB) => {
             res.json(workoutDB)
         })
-        .catch(error => {
+        .catch((error) => {
             res.status(400).json(error);
         });
 });
 
-router.get('api/workouts/range', (req, res) => {
+router.get('/api/workouts/range', (req, res) => {
     Workout.aggregate([
         {
             $addFields: {
@@ -41,7 +41,7 @@ router.get('api/workouts/range', (req, res) => {
         .then((workoutDB) => {
             res.json(workoutDB);
         })
-        .catch(error => {
+        .catch((error) => {
             res.status(400).json(error);
         });
 });
@@ -59,7 +59,7 @@ router.get('/api/workouts', (req, res) => {
         .then((workoutDB) => {
             res.json(workoutDB)
         })
-        .catch(error => {
+        .catch((error) => {
             res.status(400).json(error);
         });
 });
