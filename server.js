@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const htmlRoute = require('./routes/htmlRoute');
 const apiRoute = require('./routes/apiRoute');
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
+//Connecting to mongodb
 mongoose.connect(
     process.env.MONGODB_URI || 'mongodb://localhost/workout',
     {
@@ -25,8 +26,9 @@ mongoose.connect(
     }
 );
 
-app.use(apiRoute);
+//Requiring routes
 app.use(htmlRoute);
+app.use(apiRoute);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}`);
